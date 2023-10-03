@@ -2,12 +2,6 @@ import React, { useCallback, useMemo } from "react";
 import TodoListInput from "./TodoListInput";
 import { VISIBILITY_TYPE } from "../constants";
 import TodoListItems from "./TodoListItems";
-// import {
-//   ListGroup,
-//   ListGroupItem,
-//   FormCheck,
-//   CloseButton,
-// } from "react-bootstrap";
 
 const TodoList = ({ todoList, setTodoList, visibilityType }) => {
   const { ACTIVE, COMPLETED } = VISIBILITY_TYPE;
@@ -34,7 +28,7 @@ const TodoList = ({ todoList, setTodoList, visibilityType }) => {
     [todoList, setTodoList]
   );
 
-  const HandleToggleTodo = useCallback(
+  const handleToggleTodo = useCallback(
     (id) => {
       const todoListCopy = [...todoList];
       const todo = todoListCopy.find((todoItem) => todoItem.id === id);
@@ -44,7 +38,7 @@ const TodoList = ({ todoList, setTodoList, visibilityType }) => {
     [todoList, setTodoList]
   );
 
-  const HandleRemoveTodo = useCallback(
+  const handleRemoveTodo = useCallback(
     (id) => {
       const newTodos = todoList.filter((todo) => todo.id !== id);
       setTodoList(newTodos);
@@ -85,32 +79,10 @@ const TodoList = ({ todoList, setTodoList, visibilityType }) => {
         {todoList.length > 0 ? (
           <TodoListItems
             getVisibleTodos={getVisibleTodos}
-            HandleToggleTodo={HandleToggleTodo}
-            HandleRemoveTodo={HandleRemoveTodo}
+            HandleToggleTodo={handleToggleTodo}
+            HandleRemoveTodo={handleRemoveTodo}
           />
-        ) : // <ListGroup>
-        //   {getVisibleTodos.map((todo) => (
-        //     <ListGroupItem key={todo.id} className="todoItem-container">
-        //       <div
-        //         onClick={() => HandleToggleTodo(todo.id)}
-        //         className="todoItem-checkbox"
-        //       >
-        //         <FormCheck
-        //           id={todo.id}
-        //           type="checkbox"
-        //           checked={todo.completed}
-        //           readOnly
-        //         />
-        //         <span className="ml">{todo.text}</span>
-        //       </div>
-        //       <CloseButton
-        //         className="ml"
-        //         onClick={() => HandleRemoveTodo(todo.id)}
-        //       />
-        //     </ListGroupItem>
-        //   ))}
-        // </ListGroup>
-        null}
+        ) : null}
       </div>
       <div className="container clear-button">{handleRemoveComplete()}</div>
     </>
