@@ -16,14 +16,12 @@ function App() {
       <TodoToggleButtons
         visibilityType={visibilityType}
         setVisibilityType={setVisibilityType}
-        VISIBILITY_TYPE={VISIBILITY_TYPE}
       />
 
       <TodoList
         todoList={todoList}
         setTodoList={setTodoList}
         visibilityType={visibilityType}
-        VISIBILITY_TYPE={VISIBILITY_TYPE}
       />
     </div>
   );

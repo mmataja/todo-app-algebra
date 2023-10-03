@@ -1,21 +1,18 @@
 import React, { useCallback, useMemo } from "react";
 import TodoListInput from "./TodoListInput";
-import {
-  ListGroup,
-  ListGroupItem,
-  FormCheck,
-  CloseButton,
-} from "react-bootstrap";
+import { VISIBILITY_TYPE } from "../constants";
+import TodoListItems from "./TodoListItems";
+// import {
+//   ListGroup,
+//   ListGroupItem,
+//   FormCheck,
+//   CloseButton,
+// } from "react-bootstrap";
 
-const TodoList = ({
-  todoList,
-  setTodoList,
-  visibilityType,
-  VISIBILITY_TYPE,
-}) => {
+const TodoList = ({ todoList, setTodoList, visibilityType }) => {
   const { ACTIVE, COMPLETED } = VISIBILITY_TYPE;
 
-  const HandleAddTodo = useCallback(
+  const handleAddTodo = useCallback(
     (event) => {
       event.preventDefault();
       const inputValue = event.target.todo.value;
@@ -84,31 +81,36 @@ const TodoList = ({
   return (
     <>
       <div className="container">
-        <TodoListInput HandleAddTodo={HandleAddTodo} />
+        <TodoListInput HandleAddTodo={handleAddTodo} />
         {todoList.length > 0 ? (
-          <ListGroup>
-            {getVisibleTodos.map((todo) => (
-              <ListGroupItem key={todo.id} className="todoItem-container">
-                <div
-                  onClick={() => HandleToggleTodo(todo.id)}
-                  className="todoItem-checkbox"
-                >
-                  <FormCheck
-                    id={todo.id}
-                    type="checkbox"
-                    checked={todo.completed}
-                    readOnly
-                  />
-                  <span className="ml">{todo.text}</span>
-                </div>
-                <CloseButton
-                  className="ml"
-                  onClick={() => HandleRemoveTodo(todo.id)}
-                />
-              </ListGroupItem>
-            ))}
-          </ListGroup>
-        ) : null}
+          <TodoListItems
+            getVisibleTodos={getVisibleTodos}
+            HandleToggleTodo={HandleToggleTodo}
+            HandleRemoveTodo={HandleRemoveTodo}
+          />
+        ) : // <ListGroup>
+        //   {getVisibleTodos.map((todo) => (
+        //     <ListGroupItem key={todo.id} className="todoItem-container">
+        //       <div
+        //         onClick={() => HandleToggleTodo(todo.id)}
+        //         className="todoItem-checkbox"
+        //       >
+        //         <FormCheck
+        //           id={todo.id}
+        //           type="checkbox"
+        //           checked={todo.completed}
+        //           readOnly
+        //         />
+        //         <span className="ml">{todo.text}</span>
+        //       </div>
+        //       <CloseButton
+        //         className="ml"
+        //         onClick={() => HandleRemoveTodo(todo.id)}
+        //       />
+        //     </ListGroupItem>
+        //   ))}
+        // </ListGroup>
+        null}
       </div>
       <div className="container clear-button">{handleRemoveComplete()}</div>
     </>

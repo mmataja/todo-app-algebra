@@ -1,12 +1,9 @@
 import React from "react";
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import { getButtonVariant } from "../utils/index";
+import { VISIBILITY_TYPE } from "../constants";
 
-const TodoToggleButons = ({
-  visibilityType,
-  setVisibilityType,
-  VISIBILITY_TYPE,
-}) => {
+const TodoToggleButons = ({ visibilityType, setVisibilityType }) => {
   const { ALL, ACTIVE, COMPLETED } = VISIBILITY_TYPE;
 
   return (
